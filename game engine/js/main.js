@@ -1,4 +1,4 @@
-games = ['chess', 'checkers', 'tic_tac_toe', 'connect_four','8-Queens']
+games = ['chess', 'checkers', 'tic_tac_toe', 'connect_four','8-Queens','sudoku']
 
 function startGame(name) {
   const menu = document.getElementById('menu')
@@ -9,6 +9,7 @@ function startGame(name) {
     case games[2]: game = new tic_tac_toe();break;
     case games[3]: game = new connect_four();break;
     case games[4]: game = new Queens();break;
+    case games[5]: game = new sudoku();break;
   }
   game.init()
   const ex = document.getElementById('exit')
