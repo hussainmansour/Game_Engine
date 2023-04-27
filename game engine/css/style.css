@@ -6,7 +6,8 @@ body{
   align-items: center;
 }
 
-.black{background: #CCCCCCFF}
+.black{background: #333}
+.grey{background: #CCCCCCFF}
 .white{background: #EEE}
 .cyan{background: #9ed0d9}
 .blue{background: #0086d9}

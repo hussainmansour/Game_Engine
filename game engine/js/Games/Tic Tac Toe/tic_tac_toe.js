@@ -3,8 +3,8 @@ class tic_tac_toe extends gameEngine{
   ticTacToeController
   constructor() {
     super();
-    this.ticTacToeDrawer = new tic_tac_toe_drawer()
-    this.ticTacToeController = new tic_tac_toe_controller()
+    this.ticTacToeDrawer = new checkers_drawer()
+    this.ticTacToeController = new checkers_controller()
   }
 
   init(){

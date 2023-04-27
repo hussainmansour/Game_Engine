@@ -68,7 +68,7 @@ class chess_drawer extends drawer{
       for (let j = 1; j <= m; j++) {
         const td = document.getElementById('r'+ i + 'c' +j)
         const position = String.fromCharCode('a'.charCodeAt(0) + j - 1) + i
-        td.className = (i%2 === j%2 ? "white" : "black")
+        td.className = (i%2 === j%2 ? "white" : "grey")
         td.style.width = td.style.height = '1.3em'
         td.style.fontSize = '3em'
         td.textContent = this.state[position].symbol
