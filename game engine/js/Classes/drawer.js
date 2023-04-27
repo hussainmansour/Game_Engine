@@ -20,7 +20,7 @@ class drawer{
 
 
     const exit = document.createElement('button')
-    exit.id = 'exit';exit.textContent = 'back to main Menu'
+    exit.id = 'exit';exit.textContent = 'Main Menu'
     document.body.appendChild(exit);
   }
 }

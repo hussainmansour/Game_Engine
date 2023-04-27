@@ -14,6 +14,7 @@ function startGame(name) {
   const ex = document.getElementById('exit')
   ex.addEventListener('click', () => {mainMenu();ex.remove()})
 }
+
 function mainMenuInit(){
   const menu = document.createElement('div')
   menu.id = 'menu'

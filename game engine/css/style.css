@@ -12,24 +12,47 @@ body{
 .cyan{background: #9ed0d9}
 .blue{background: #0086d9}
 
-button{
+#board button{
   border: none;
   transition: .1s ease-in-out;
 }
 button:hover{opacity: .8}
 button:focus,
-button.active{box-shadow: inset 0 0 10px 0 #333;}
+button.active{box-shadow: inset 0 0 10px 0 #000;opacity: .8}
 
 #menu{
+  width: 80%;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 #menu button{
   border: 1px solid #333;
-  background: #AAA;
-  width: 15em;
-  height: 10em;
-  margin: 0 1px;
+  background: #333;
+  font-size: 2em;
+  color: #FFF;
+  font-family: "BankGothic Md BT";
+  width: 30%;
+  height: 5em;
+  margin: 1px;
+}
+
+#exit{
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  font-size: 1.4em;
+  font-family: "BankGothic Md BT";
+  padding:10px 20px;
+  border-radius: 40px;
+  transition: .2s ease-in-out;
+}
+#exit:hover{
+  opacity: 1;
+  background: #222;
+  color: #FFF;
 }
