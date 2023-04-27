@@ -3,8 +3,8 @@ class chess extends gameEngine{
   chessController
   constructor() {
     super();
-    this.chessDrawer = new chess_drawer()
-    this.chessController = new chess_controller()
+    this.chessDrawer = new chess_drawer(this.chessController)
+    this.chessController = new chess_controller(this.chessDrawer)
   }
 
   init(){

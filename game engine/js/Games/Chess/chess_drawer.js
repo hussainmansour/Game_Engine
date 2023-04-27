@@ -1,8 +1,9 @@
 class chess_drawer extends drawer{
   state
-  constructor() {
+  constructor(controller) {
     super();
     super.draw_board(8, 8)
+    this.controller = controller;
     this.state = {
       'a1': {name: 'rook', color: 'white', symbol: '\u2656'},
       'b1': {name: 'knight', color: 'white', symbol: '\u2658'},

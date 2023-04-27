@@ -1,9 +1,11 @@
 class checkers_drawer extends drawer{
   state
-  constructor() {
+  constructor(controller) {
     super();
     super.draw_board(8, 8)
+    this.controller = controller;
     this.initial_state(8, 8)
+
   }
 
   initial_state(n, m){

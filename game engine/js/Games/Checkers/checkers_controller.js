@@ -1,6 +1,7 @@
 class checkers_controller extends controller{
-  constructor() {
+  constructor(drawer) {
     super();
+    this.drawer = drawer;
   }
 
   validate_input() {

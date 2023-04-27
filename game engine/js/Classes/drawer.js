@@ -1,7 +1,6 @@
 class drawer{
   controller;
-  constructor() {
-  }
+  constructor() { }
   draw_board(n, m){
     const table = document.createElement("div");
     table.id = 'board'

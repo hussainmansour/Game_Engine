@@ -3,8 +3,8 @@ class Queens extends gameEngine{
   QueensController
   constructor() {
     super();
-    this.QueensDrawer = new Queens_drawer()
-    this.QueensController = new Queens_controller()
+    this.QueensDrawer = new Queens_drawer(this.QueensController)
+    this.QueensController = new Queens_controller(this.QueensDrawer)
   }
 
   init(){

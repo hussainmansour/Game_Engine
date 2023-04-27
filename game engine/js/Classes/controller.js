@@ -1,7 +1,6 @@
 class controller{
   drawer;
-  constructor() {
-  }
+  constructor() {}
   validate_input(){}
   take_turns(){}
   control(){}

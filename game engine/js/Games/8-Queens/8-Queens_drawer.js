@@ -1,8 +1,9 @@
 class Queens_drawer extends drawer {
   state;
-  constructor() {
+  constructor(controller) {
   super();
-  super.draw_board(8, 8)
+  super.draw_board(8, 8);
+  this.controller = controller;
   this.state = {
     'a1': {name: '', color: '', symbol: ''}, 'b1': {name: '', color: '', symbol: ''},
     'c1': {name: '', color: '', symbol: ''}, 'd1': {name: '', color: '', symbol: ''},

@@ -1,6 +1,7 @@
 class Queens_controller extends controller {
-  constructor() {
+  constructor(drawer) {
     super();
+    this.drawer = drawer;
   }
 
   validate_input() {
