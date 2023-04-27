@@ -1,4 +1,4 @@
-games = ['chess', 'checkers', 'tic_tac_toe', 'connect_four']
+games = ['chess', 'checkers', 'tic_tac_toe', 'connect_four','8-Queens']
 
 function startGame(name) {
   const menu = document.getElementById('menu')
@@ -8,6 +8,7 @@ function startGame(name) {
     case games[1]: game = new checkers();break;
     case games[2]: game = new tic_tac_toe();break;
     case games[3]: game = new connect_four();break;
+    case games[4]: game = new Queens();break;
   }
   game.init()
   const ex = document.getElementById('exit')
@@ -16,7 +17,7 @@ function startGame(name) {
 function mainMenuInit(){
   const menu = document.createElement('div')
   menu.id = 'menu'
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < games.length; i++) {
     const g = document.createElement('button')
     g.name = games[i]
     g.textContent = games[i]
