@@ -74,7 +74,7 @@ class chess_drawer extends drawer{
         td.textContent = this.state[position].symbol
       }
       const tr = document.getElementById('r'+ i)
-      tr.style.lineHeight = '0'
+      tr.style.display = 'flex'
     }
   }
 

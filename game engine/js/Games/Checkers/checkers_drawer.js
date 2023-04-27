@@ -22,8 +22,6 @@ class checkers_drawer extends drawer{
   }
   draw(n, m) {
     for (let i = 1; i <= n; i++) {
-      const tr = document.getElementById('r'+ i)
-      tr.style.lineHeight = '0'
       for (let j = 1; j <= m; j++) {
         const td = document.getElementById('r'+ i + 'c' +j)
         const position = i + '' + j
@@ -36,6 +34,8 @@ class checkers_drawer extends drawer{
           td.style.color = this.state[position].color
         }
       }
+      const tr = document.getElementById('r'+ i)
+      tr.style.display = 'flex'
     }
   }
 

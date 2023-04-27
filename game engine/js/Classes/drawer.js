@@ -16,7 +16,11 @@ class drawer{
 
       table.appendChild(tr);
     }
-
     document.body.appendChild(table);
+
+
+    const exit = document.createElement('button')
+    exit.id = 'exit';exit.textContent = 'back to main Menu'
+    document.body.appendChild(exit);
   }
 }
