@@ -2,23 +2,21 @@ class tic_tac_toe_drawer extends drawer{
   state
   constructor() {
     super();
+    super.draw_board(3, 3)
   }
 
   draw(n, m) {
-    const table = document.createElement("div");
     for (let i = 1; i <= n; i++) {
-      const tr = document.createElement('div');
+      const tr = document.getElementById('r' + i)
+      tr.style.lineHeight = '0'
+
       for (let j = 1; j <= m; j++) {
-        const td = document.createElement('button');
+        const td = document.getElementById('r' + i + 'c' + j)
         td.className = 'cyan'
         td.style.width = td.style.height = '12em'
         td.style.border = '1px solid #EEE'
-        tr.appendChild(td);
       }
-      tr.style.lineHeight = 0
-      table.appendChild(tr);
     }
-    document.body.appendChild(table);
   }
 
 }

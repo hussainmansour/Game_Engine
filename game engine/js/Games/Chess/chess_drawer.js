@@ -2,6 +2,7 @@ class chess_drawer extends drawer{
   state
   constructor() {
     super();
+    super.draw_board(8, 8)
     this.state = {
       'a1': {name: 'rook', color: 'white', symbol: '\u2656'},
       'b1': {name: 'knight', color: 'white', symbol: '\u2658'},
@@ -63,23 +64,18 @@ class chess_drawer extends drawer{
   }
 
   draw(n, m) {
-    const table = document.createElement("div");
     for (let i = 1; i <= n; i++) {
-      const tr = document.createElement('div');
       for (let j = 1; j <= m; j++) {
-        const td = document.createElement('button');
+        const td = document.getElementById('r'+ i + 'c' +j)
         const position = String.fromCharCode('a'.charCodeAt(0) + j - 1) + i
-
         td.className = (i%2 === j%2 ? "white" : "black")
         td.style.width = td.style.height = '1.3em'
         td.style.fontSize = '3em'
         td.textContent = this.state[position].symbol
-        tr.appendChild(td);
       }
+      const tr = document.getElementById('r'+ i)
       tr.style.lineHeight = '0'
-      table.appendChild(tr);
     }
-    document.body.appendChild(table);
   }
 
 
