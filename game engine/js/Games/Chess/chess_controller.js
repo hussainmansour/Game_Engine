@@ -19,8 +19,9 @@ class chess_controller extends controller{
       const second = (this.moves)[1]
       const firstPos = String.fromCharCode('a'.charCodeAt(0) + first.j - 1) + first.i
       const secondPos = String.fromCharCode('a'.charCodeAt(0) + second.j - 1) + second.i
+      const emptyPiece = {name: '', color:'', symbol:''}
       if(this.validate_input())
-        [(this.state)[firstPos], (this.state)[secondPos]] = [(this.state)[secondPos], (this.state)[firstPos]]
+        [(this.state)[firstPos], (this.state)[secondPos]] = [emptyPiece, (this.state)[firstPos]]
 
       this.drawer.draw(8, 8)
       this.moves = []
