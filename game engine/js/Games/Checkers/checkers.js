@@ -7,6 +7,7 @@ class checkers extends gameEngine{
     this.initial_state(8, 8)
     this.CheckersController = new checkers_controller(this.CheckersDrawer, this.state)
     this.CheckersDrawer = new checkers_drawer(this.CheckersController, this.state)
+    this.CheckersController.drawer = this.CheckersDrawer
   }
   initial_state(n, m){
     this.state = {}

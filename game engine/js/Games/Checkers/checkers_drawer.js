@@ -16,6 +16,7 @@ class checkers_drawer extends drawer{
           td.textContent = '\u2689'
           td.style.color = this.state[position].color
         }
+        else td.textContent = ''
       }
       const tr = document.getElementById('r'+ i)
       tr.style.display = 'flex'

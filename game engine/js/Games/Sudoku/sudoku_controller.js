@@ -8,7 +8,7 @@ class sudoku_controller extends controller {
   validate_input(grid, row, col, value,first=true) {
     super.validate_input();
     // Check row
-    let invalid=true;
+    let invalid = true;
     for (let j = 1; j <= 9; j++) {
       if (grid[row][j] === value) {
         if (!first) {
@@ -16,7 +16,7 @@ class sudoku_controller extends controller {
           cell.classList.add('invalid_cell');
           setTimeout(() => {cell.classList.remove('invalid_cell');}, 1000);
         }
-        invalid=false;
+        invalid = false;
       }
     }
 
@@ -28,7 +28,7 @@ class sudoku_controller extends controller {
           cell.classList.add('invalid_cell');
           setTimeout(() => {cell.classList.remove('invalid_cell');}, 1000);
         }
-        invalid=false;
+        invalid = false;
       }
     }
 
@@ -43,7 +43,7 @@ class sudoku_controller extends controller {
             cell.classList.add('invalid_cell');
             setTimeout(() => {cell.classList.remove('invalid_cell');}, 1000);
           }
-          invalid=false;
+          invalid = false;
         }
       }
     }
