@@ -4,8 +4,8 @@ class connect_four extends gameEngine{
   state
   constructor() {
     super();
-    this.connectFourDrawer = new connect_four_drawer(this.connectFourController)
-    this.connectFourController = new connect_four_controller(this.connectFourDrawer)
+    this.connectFourController = new connect_four_controller(this.connectFourDrawer, this.state)
+    this.connectFourDrawer = new connect_four_drawer(this.connectFourController, this.state)
   }
 
   init(){

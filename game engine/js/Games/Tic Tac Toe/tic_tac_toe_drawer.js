@@ -1,7 +1,6 @@
 class tic_tac_toe_drawer extends drawer{
-  state
-  constructor() {
-    super();
+  constructor(controller, state) {
+    super(controller, state);
     super.draw_board(3, 3)
   }
 

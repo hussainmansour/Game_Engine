@@ -1,10 +1,9 @@
 class sudoku_controller extends controller {
-  constructor(drawer) {
-    super();
-    this.drawer = drawer;
+  constructor(drawer, state) {
+    super(drawer, state);
   }
 
-  validate_input(grid,row,col,value) {
+  validate_input(grid, row, col, value) {
     super.validate_input();
     for (let j = 1; j <= 9; j++) {
       if (grid[row][j] === value) {
@@ -33,14 +32,14 @@ class sudoku_controller extends controller {
     return true;
   }
 
-
-
   take_turns() {
     super.take_turns();
-    this.drawer.draw(9, 9);
+    this.drawer.draw(this.state, 9, 9);
   }
 
   control() {
     super.control();
+    const last = (this.moves)[this.moves.length - 1]
+    console.log(last)
   }
 }

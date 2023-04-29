@@ -1,12 +1,10 @@
 class sudoku_drawer extends drawer {
-
-  constructor(controller) {
-    super();
+  constructor(controller, state) {
+    super(controller, state);
     super.draw_board(9, 9);
-    this.controller=controller;
   }
 
-  draw(grid,n,m) {
+  draw(grid, n, m) {
     for (let i = 1; i <=n ; i++) {
       for (let j = 1; j <=m ; j++) {
         const td = document.getElementById('r'+ i + 'c' +j)

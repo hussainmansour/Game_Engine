@@ -1,8 +1,7 @@
 class connect_four_drawer extends drawer{
-  constructor(controller) {
-    super();
+  constructor(controller, state) {
+    super(controller, state);
     super.draw_board(6, 7)
-    this.controller = controller
   }
 
   draw(n, m) {

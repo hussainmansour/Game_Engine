@@ -1,6 +1,6 @@
 class tic_tac_toe_controller extends controller{
-  constructor() {
-    super();
+  constructor(drawer, state) {
+    super(drawer, state);
   }
 
   validate_input() {
