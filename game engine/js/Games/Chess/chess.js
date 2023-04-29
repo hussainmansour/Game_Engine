@@ -64,6 +64,7 @@ class chess extends gameEngine{
     };
     this.chessController = new chess_controller(this.chessDrawer, this.state)
     this.chessDrawer = new chess_drawer(this.chessController, this.state)
+    this.chessController.drawer = this.chessDrawer
   }
 
   init(){
