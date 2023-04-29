@@ -60,28 +60,19 @@ class sudoku_controller extends controller {
     super.control();
     const last = (this.moves)[this.moves.length - 1]
     const cell = document.getElementById('r' + last.i + 'c' + last.j);
-    if(cell.textContent !== '') {
-      cell.textContent = '';
-      (this.state)[last.i][last.j] = 0;
-      cell.classList.remove('tile-start');
-    }
-    else{
-      const x=parseInt(prompt("Enter the value"));
-      if(x>9 || x<1||isNaN(x)){
-        alert("Invalid input");
+    const x=parseInt(prompt("Enter the value"));
+    if(x>9 || x<1||isNaN(x)){
         return;
-      }
-      if (this.validate_input(this.state, last.i, last.j, x,false)) {
-        console.log('valid');
-        (this.state)[last.i][last.j] = x;
-        cell.textContent = x.toString();
-        cell.classList.add('tile-start');
-      }
-      else {
+    }
+    if (this.validate_input(this.state, last.i, last.j, x,false)) {
+      console.log('valid');
+      (this.state)[last.i][last.j] = x;
+      cell.textContent = x.toString();
+      cell.classList.add('tile-start');
+      } else {
         console.log('invalid');
         this.moves.splice(this.moves.length - 1, 1);
       }
-    }
     console.log(last);
     console.log(this.state);
   }
