@@ -2,6 +2,8 @@ class sudoku_drawer extends drawer {
   constructor(controller, state) {
     super(controller, state);
     super.draw_board(9, 9);
+    console.log('sudoku drawer created');
+    console.log(this.state);
   }
 
   draw(grid, n, m) {

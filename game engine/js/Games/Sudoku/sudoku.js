@@ -4,9 +4,10 @@ class sudoku extends gameEngine{
   state
   constructor() {
     super();
+    this.state = {}
     this.sudokuController = new sudoku_controller(this.sudokuDrawer, this.state)
     this.sudokuDrawer = new sudoku_drawer(this.sudokuController, this.state)
-    this.state = {}
+    console.log(typeof this.state);
     for (let i = 1; i <= 9; i++) {
       (this.state)[i] = [];
       for (let j = 1; j <= 9; j++) {
@@ -14,6 +15,7 @@ class sudoku extends gameEngine{
       }
     }
     this.state = this.generateSudoku();
+    console.log(this.state);
   }
 
   init(){
