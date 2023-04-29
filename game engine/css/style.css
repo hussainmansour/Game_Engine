@@ -11,6 +11,8 @@ body{
 .white{background: #EEE}
 .cyan{background: #9ed0d9}
 .blue{background: #0086d9}
+.green{background: #63de6e
+}
 
 #board button{
   border: none;
@@ -67,33 +69,18 @@ button.active{box-shadow: inset 0 0 10px 0 #000;opacity: .8}
   align-items: center;
 }
 
-.number-selected {
-  background-color: gray;
-}
+.number-selected {background-color: gray;}
 
-.tile-start {
-  background-color: whitesmoke;
-}
+.tile-start {background-color: whitesmoke;}
 
-.horizontal-line {
-  border-bottom: 1px solid black !important;
-}
+.horizontal-line {border-bottom: 2px solid black !important;}
 
-.vertical-line {
-  border-right: 1px solid black !important;
-}
+.vertical-line {border-right: 2px solid black !important;}
 
 .invalid_cell{background: rgb(229, 114, 114);}
+.large-button {font-size: 24px;}
 
-.large-button {
-  font-size: 24px;
-}
-
-.x {
-  color: red;
-}
-.o {
-  color: blue;
-}
+.x {color: #0086d9;}
+.o {color: #ff4646;}
 
 

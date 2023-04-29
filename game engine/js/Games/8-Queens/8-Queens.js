@@ -7,6 +7,7 @@ class Queens extends gameEngine{
     this.state = []
     this.QueensController = new Queens_controller(this.QueensDrawer, this.state)
     this.QueensDrawer = new Queens_drawer(this.QueensController, this.state)
+    this.QueensController.drawer = this.QueensDrawer
   }
 
   init(){

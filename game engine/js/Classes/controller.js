@@ -10,6 +10,8 @@ class controller{
     this.turn = 1
   }
   validate_input(){}
-  take_turns(){}
+  take_turns(n){
+    this.turn = (this.turn + 1) % n;
+  }
   control(){}
 }

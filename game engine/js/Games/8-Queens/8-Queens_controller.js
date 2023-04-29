@@ -9,12 +9,13 @@ class Queens_controller extends controller {
     // find any queen on forbidden position according to the last queen inserted
     // but not the new queen
     return this.state.findIndex(el =>
-      (el.i === last.i || el.j === last.j || el.i - el.j === last.i - last.j || 8 - el.i - el.j === 8 - last.i - last.j)
-    )// && (JSON.stringify(el) !== JSON.stringify(last)))
+      (el.i === last.i || el.j === last.j ||
+      el.i - el.j === last.i - last.j ||
+      8 - el.i - el.j === 8 - last.i - last.j))
   }
 
-  take_turns() {
-    super.take_turns();
+  take_turns(n) {
+    super.take_turns(n);
   }
 
   control() {
@@ -41,6 +42,5 @@ class Queens_controller extends controller {
         setTimeout(() => {threat_queen.classList.remove('invalid_cell');}, 1000);
       }
     }
-    console.log(this.state)
   }
 }

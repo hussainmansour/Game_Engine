@@ -7,7 +7,7 @@ class sudoku extends gameEngine{
     this.state = {}
     this.sudokuController = new sudoku_controller(this.sudokuDrawer, this.state)
     this.sudokuDrawer = new sudoku_drawer(this.sudokuController, this.state)
-    console.log(typeof this.state);
+    this.sudokuController.drawer = this.sudokuDrawer
     for (let i = 1; i <= 9; i++) {
       (this.state)[i] = [];
       for (let j = 1; j <= 9; j++) {
@@ -15,11 +15,10 @@ class sudoku extends gameEngine{
       }
     }
     this.state = this.generateSudoku();
-    console.log(this.state);
   }
 
   init(){
-    this.sudokuDrawer.draw(this.state, 9, 9)
+    this.sudokuDrawer.draw(9, 9)
   }
 
   generateSudoku() {
@@ -29,7 +28,7 @@ class sudoku extends gameEngine{
         if (Math.random() < 0.5) {
           // Fill the cell with a random number between 1 and 9
           let randomNumber = Math.floor(Math.random() * 9) + 1;
-          if (this.sudokuController.validate_input(this.state, i, j, randomNumber)) {
+          if (this.sudokuController.validate_input(i, j, randomNumber)) {
             (this.state)[i][j] = randomNumber;
           }
         }
@@ -37,6 +36,5 @@ class sudoku extends gameEngine{
     }
     return this.state;
   }
-
 
 }
