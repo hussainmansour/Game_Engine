@@ -82,5 +82,6 @@ button.active{box-shadow: inset 0 0 10px 0 #000;opacity: .8}
 
 .x {color: #0086d9;}
 .o {color: #ff4646;}
-
+.r{background: red;}
+.y{background: yellow;}
 
