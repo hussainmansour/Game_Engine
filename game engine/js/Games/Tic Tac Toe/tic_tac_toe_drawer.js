@@ -13,7 +13,6 @@ class tic_tac_toe_drawer extends drawer{
         const td = document.getElementById('r' + i + 'c' + j)
         td.textContent = this.state[i][j]
         td.className = 'cyan'
-        td.style.fontFamily = 'fantasy'
         td.style.textTransform = 'uppercase'
         td.style.width = td.style.height = '12em'
         td.style.border = '1px solid #EEE'
