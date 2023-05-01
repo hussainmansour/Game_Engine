@@ -26,5 +26,13 @@ class checkers_controller extends controller{
       this.drawer.draw(8, 8)
       this.moves = []
     }
+
+    else{
+      const oneMove = this.moves[0].i + '' + this.moves[0].j
+      if(this.state[oneMove].player === -1){
+        console.log("invalid move")
+        this.moves = []
+      }
+    }
   }
 }
