@@ -1,4 +1,4 @@
-games = ['chess', 'checkers', 'tic_tac_toe', 'connect_four','8-Queens','sudoku']
+games = ['chess', 'checkers', 'tic tac toe', 'connect four','8 Queens','sudoku']
 
 function startGame(name) {
   const body = document.getElementById('body')
