@@ -12,9 +12,12 @@ function startGame(name) {
     case games[5]: game = new sudoku();break;
   }
 
-  game.init()
-  const ex = document.getElementById('exit')
-  ex.addEventListener('click', () => {mainMenu();ex.remove()})
+  const exit = document.createElement('button')
+  exit.id = 'exit';exit.textContent = 'Main Menu'
+  document.body.appendChild(exit);
+  exit.addEventListener('click', () => {mainMenu();exit.remove()})
+
+  game.game()
 }
 
 function mainMenuInit(){
@@ -54,9 +57,9 @@ function mainMenuInit(){
 function mainMenu(){
   const board = document.getElementById('board')
   if(board) {
-    board.remove()
     const body = document.getElementById('body')
     body.style.right = '0'
+    board.remove()
   }
   else mainMenuInit()
 }

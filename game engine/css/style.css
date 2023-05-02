@@ -18,13 +18,8 @@ body{
 .green{background: #63de6e
 }
 
-#board button{
-  border: none;
-  transition: .1s ease-in-out;
-}
+#board button{border: none}
 button:hover{opacity: .8}
-button:focus,
-button.active{box-shadow: inset 0 0 10px 0 #000;opacity: .8}
 
 #menu{
   width: 80%;
@@ -48,21 +43,25 @@ button.active{box-shadow: inset 0 0 10px 0 #000;opacity: .8}
   margin: 1px;
 }
 
-#exit{
+#exit, #input{
   position: absolute;
   bottom: 1em;
-  right: 1em;
   font-size: 1.4em;
-  font-family: 'Chivo Mono';
+  font-family: 'Chivo Mono', sans-serif;
   padding:10px 20px;
   border-radius: 40px;
   transition: .2s ease-in-out;
 }
+
+#input:hover,
 #exit:hover{
   opacity: 1;
   background: #222;
   color: #FFF;
 }
+
+#exit{right: 2em}
+#input{left: 2em}
 
 .tile {
   border: 1px solid lightgray !important;

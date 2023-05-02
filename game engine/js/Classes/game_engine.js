@@ -1,5 +1,6 @@
 class gameEngine{
-  controller
-  drawer
   constructor() { }
+
+  drawer(state){}
+  controller(state, input){}
 }
