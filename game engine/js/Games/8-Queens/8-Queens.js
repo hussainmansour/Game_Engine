@@ -6,6 +6,7 @@ class Queens extends gameEngine{
   }
 
   game(){
+    super.game()
     this.drawer(this.state)
     const input_button = document.createElement('button')
     input_button.id = 'input';input_button.textContent = "Give Input"
@@ -37,12 +38,11 @@ class Queens extends gameEngine{
   }
 
   drawer(state){
+    super.drawer(state)
     const board = document.getElementById('board')
     if(board) board.remove()
 
-    const table = document.createElement("div");
-    table.id = 'board'
-
+    const table = document.createElement("div");table.id = 'board'
     for (let i = 1; i <= 8; i++) {
       const tr = document.createElement('div');
       // tr.id = i + ''
@@ -63,6 +63,7 @@ class Queens extends gameEngine{
   }
 
   controller(state, input){
+    super.controller(state, input)
     let queen = true
     for (let i = 1; i <= 8; i++) {
       for (let j = 1; j <= 8; j++) {

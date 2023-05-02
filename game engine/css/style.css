@@ -19,7 +19,7 @@ body{
 }
 
 #board button{border: none}
-button:hover{opacity: .8}
+#menu button:hover{opacity: .8}
 
 #menu{
   width: 80%;
@@ -75,7 +75,7 @@ button:hover{opacity: .8}
 
 .number-selected {background-color: gray;}
 
-.tile-start {background-color: whitesmoke;}
+.tile-start {background-color: #DDD;}
 
 .horizontal-line {border-bottom: 2px solid black !important;}
 
