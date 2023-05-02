@@ -11,7 +11,7 @@ class sudoku extends gameEngine{
     const input_button = document.createElement('button')
     input_button.id = 'input';input_button.textContent = "Give Input"
     input_button.addEventListener('click',() => {
-      const input = prompt("Enter queen position i.e. 2 5 4")
+      const input = prompt("Enter position and value i.e. 2 5 4")
       const input_ = input.split(' ')
 
       if (input_.length !== 3) console.log("Invalid input!")
@@ -58,18 +58,13 @@ class sudoku extends gameEngine{
     }
   }
 
-  validate_input(state, row, col, value,first=true) {
+  validate_input(state, row, col, value) {
     if(value > 9 || value < 1 || isNaN(value)) return false;
 
     // Check row
     let invalid = true;
     for (let j = 1; j <= 9; j++) {
       if (state[row][j] === value) {
-        if (!first) {
-          const cell = document.getElementById('r' + row + 'c' + j);
-          cell.classList.add('invalid_cell');
-          setTimeout(() => {cell.classList.remove('invalid_cell');}, 1000);
-        }
         invalid = false;
       }
     }
@@ -77,11 +72,6 @@ class sudoku extends gameEngine{
     // Check column
     for (let i = 1; i <= 9; i++) {
       if (state[i][col] === value) {
-        if (!first) {
-          const cell = document.getElementById('r' + i + 'c' + col);
-          cell.classList.add('invalid_cell');
-          setTimeout(() => {cell.classList.remove('invalid_cell');}, 1000);
-        }
         invalid = false;
       }
     }
@@ -92,11 +82,6 @@ class sudoku extends gameEngine{
     for (let i = boxRow; i <= boxRow + 2; i++) {
       for (let j = boxCol; j <= boxCol + 2; j++) {
         if (state[i][j] === value) {
-          if (!first) {
-            const cell = document.getElementById('r' + i + 'c' + j);
-            cell.classList.add('invalid_cell');
-            setTimeout(() => {cell.classList.remove('invalid_cell');}, 1000);
-          }
           invalid = false;
         }
       }
@@ -115,6 +100,7 @@ class sudoku extends gameEngine{
       const tr = document.createElement('div');
       for (let j = 1; j <= 9; j++) {
         const td = document.createElement('button');
+        td.id = i + '' + j
         if (state[i][j] !== 0) {
           td.textContent = (this.state)[i][j];
           td.classList.add('tile-start');
