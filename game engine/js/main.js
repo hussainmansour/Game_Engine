@@ -3,6 +3,12 @@ games = ['chess', 'checkers', 'tic tac toe', 'connect four','8 Queens','sudoku']
 function startGame(name) {
   const body = document.getElementById('body')
   body.style.right = '99%'
+
+  const exit = document.createElement('button')
+  exit.id = 'exit';exit.textContent = 'Main Menu'
+  document.body.appendChild(exit);
+  exit.addEventListener('click', () => {mainMenu();exit.remove()})
+
   switch (name){
     case games[0]: game = new chess();break;
     case games[1]: game = new checkers();break;
@@ -11,13 +17,6 @@ function startGame(name) {
     case games[4]: game = new Queens();break;
     case games[5]: game = new sudoku();break;
   }
-
-  const exit = document.createElement('button')
-  exit.id = 'exit';exit.textContent = 'Main Menu'
-  document.body.appendChild(exit);
-  exit.addEventListener('click', () => {mainMenu();exit.remove()})
-
-  game.game()
 }
 
 function mainMenuInit(){

@@ -1,23 +1,56 @@
 class connect_four extends gameEngine{
-  connectFourDrawer
-  connectFourController
-  state
   constructor() {
-    super();
-    this.state = {}
-    for (let i = 1; i <= 6; i++) {
-      (this.state)[i] = [];
-      for (let j = 1; j <= 7; j++) {
-        (this.state)[i][j] = '';
-      }
+    const state = {}
+    for (let i = 0; i < 6; i++) {
+      state[i] = [];
+      for (let j = 0; j < 7; j++) state[i][j] = '';
     }
-    this.connectFourController = new connect_four_controller(this.connectFourDrawer, this.state)
-    this.connectFourDrawer = new connect_four_drawer(this.connectFourController, this.state)
-    this.connectFourController.drawer = this.connectFourDrawer
+    super(state);
   }
 
-  init(){
-    this.connectFourDrawer.draw(6, 7)
+  drawer(state) {
+    super.drawer(state)
+    const board = document.getElementById('board')
+    if(board) board.remove()
+
+    const table = document.createElement("div");table.id = 'board'
+    table.className = 'blue'
+    table.style.padding = '0.7em'
+
+    for (let i = 0; i < 6; i++) {
+      const tr = document.createElement('div');
+      for (let j = 0; j < 7; j++) {
+        const td = document.createElement('button');
+        // td.className = state[i][j]
+        td.style.width = td.style.height = '5em'
+        td.style.borderRadius = '50%'
+        td.style.margin = '0.3em'
+        td.className = 'cyan'
+        tr.appendChild(td);
+      }
+      tr.style.display = 'flex'
+      table.appendChild(tr);
+    }
+    document.body.appendChild(table);
+  }
+
+  controller(state, input) {
+    super.controller(state, input);
+    const input_val = input - '1'
+    if (isNaN(input_val) || input_val < 0 || input_val > 6) {
+      console.log("Invalid Input!")
+      return
+    }
+
+    // TODO switch turns
+    for (let i = 5; i >= 0; i--){
+      if (state[i][input_val] === '') {
+        console.log(i, input_val)
+        state[i][input_val] = 'r'
+        return;
+      }
+    }
+    console.log("Invalid move")
   }
 
 }

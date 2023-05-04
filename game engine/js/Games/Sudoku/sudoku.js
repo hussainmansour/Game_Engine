@@ -1,39 +1,89 @@
 class sudoku extends gameEngine{
-  state
   constructor() {
-    super();
-    this.initialize_state()
-  }
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+    function generateValidSudokuBoard() {
+      const board = Array.from({ length: 9 }, () => new Array(9).fill(0));
+      const numList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      const boxSize = 3;
 
-  game() {
-    super.game();
-    this.drawer(this.state)
-    const input_button = document.createElement('button')
-    input_button.id = 'input';input_button.textContent = "Give Input"
-    input_button.addEventListener('click',() => {
-      const input = prompt("Enter position and value i.e. 2 5 4")
-      const input_ = input.split(' ')
+      // generate random numbers for first row
+      shuffle(numList);
+      for (let i = 0; i < 9; i++) {
+        board[0][i] = numList[i];
+      }
 
-      if (input_.length !== 3) console.log("Invalid input!")
-      else {
-        if (isNaN(input_[0] - '0') || isNaN(input_[1] - '0') || isNaN(input_[2] - '0')) {
-          console.log("Invalid input!");
-        } else {
-          const move = {i: input_[0] - '0', j: input_[1] - '0', value: input_[2] - '0'}
-          this.controller(this.state, move)
-          this.drawer(this.state)
+      // generate random numbers for remaining rows
+      for (let row = 1; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          // find the box boundaries for the current cell
+          const rowStart = Math.floor(row / boxSize) * boxSize;
+          const colStart = Math.floor(col / boxSize) * boxSize;
+          // get the values in the current cell's box
+          const box = [];
+          for (let j = 0; j < boxSize; j++) {
+            for (let k = 0; k < boxSize; k++) {
+              box.push(board[rowStart + j][colStart + k]);
+            }
+          }
+          // get the values in the current cell's row and column
+          const rowValues = board[row];
+          const colValues = board.map((r) => r[col]);
+          // get the list of valid numbers for the current cell
+          const validNums = numList.filter(
+            (num) => !box.includes(num) && !rowValues.includes(num) && !colValues.includes(num)
+          );
+          // if there are no valid numbers, backtrack
+          if (validNums.length === 0) {
+            return generateValidSudokuBoard();
+          }
+          // randomly select a valid number and set it in the current cell
+          const randIndex = Math.floor(Math.random() * validNums.length);
+          board[row][col] = validNums[randIndex];
         }
       }
-    });
-    document.body.appendChild(input_button)
+
+      // randomly remove cells to create the initial board
+      // zero clues => absolutely solvable
+      // 17 clues => minimum to have unique solution
+      // 40 clues => have only one solution
+      const numCellsToRemove = 81 - (Math.floor(Math.random() * 20) + 17);
+      let cellsRemoved = 0;
+      while (cellsRemoved < numCellsToRemove) {
+        const row = Math.floor(Math.random() * 9);
+        const col = Math.floor(Math.random() * 9);
+        if (board[row][col] !== 0) {
+          board[row][col] = 0;
+          cellsRemoved++;
+        }
+      }
+
+      return board;
+    }
+    const state = generateValidSudokuBoard()
+    super(state);
   }
 
   controller(state, input) {
     super.controller(state, input);
-    if(this.validate_input(state, input.i, input.j, input.value))
-      state[input.i][input.j] = input.value
-    else
-      console.log("Invalid Move")
+    const splitted = input.split(" ")
+    if(splitted.length !== 3) {
+      console.log("Invalid Move!")
+      return
+    }
+    const row = splitted[0] - '1', col = splitted[1] - '1', value = splitted[2] - '1'
+    if (isNaN(row) || isNaN(col) || row < 0 || row > 8 || col < 0 || col > 8) {
+      console.log("Invalid Input!")
+      return
+    }
+
+    if (this.validate_input(state, row, col, value))
+      state[row][col] = input.value
+    else console.log("Invalid Move")
   }
   initialize_state() {
     this.state = {}
@@ -56,31 +106,31 @@ class sudoku extends gameEngine{
         }
       }
     }
+    return this.state
   }
-
   validate_input(state, row, col, value) {
     if(value > 9 || value < 1 || isNaN(value)) return false;
 
     // Check row
     let invalid = true;
-    for (let j = 1; j <= 9; j++) {
+    for (let j = 0; j < 9; j++) {
       if (state[row][j] === value) {
         invalid = false;
       }
     }
 
     // Check column
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 0; i < 9; i++) {
       if (state[i][col] === value) {
         invalid = false;
       }
     }
 
     // Check box
-    let boxRow = Math.floor((row - 1) / 3) * 3 + 1;
-    let boxCol = Math.floor((col - 1) / 3) * 3 + 1;
-    for (let i = boxRow; i <= boxRow + 2; i++) {
-      for (let j = boxCol; j <= boxCol + 2; j++) {
+    let boxRow = Math.floor(row / 3) * 3;
+    let boxCol = Math.floor(col / 3) * 3;
+    for (let i = boxRow; i < boxRow + 3; i++) {
+      for (let j = boxCol; j < boxCol + 3; j++) {
         if (state[i][j] === value) {
           invalid = false;
         }
@@ -89,24 +139,23 @@ class sudoku extends gameEngine{
     return invalid;
   }
 
-
   drawer(state) {
     super.drawer(state);
     const board = document.getElementById('board')
     if(board) board.remove()
 
     const table = document.createElement("div");table.id = 'board'
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 0; i < 9; i++) {
       const tr = document.createElement('div');
-      for (let j = 1; j <= 9; j++) {
+      for (let j = 0; j < 9; j++) {
         const td = document.createElement('button');
         td.id = i + '' + j
         if (state[i][j] !== 0) {
           td.textContent = (this.state)[i][j];
           td.classList.add('tile-start');
         }
-        if(i===3 || i===6){td.classList.add('horizontal-line');}
-        if(j===3 || j===6){td.classList.add('vertical-line');}
+        if(i===2 || i===5){td.classList.add('horizontal-line');}
+        if(j===2 || j===5){td.classList.add('vertical-line');}
         td.classList.add('tile');
         td.style.width = td.style.height = '1.3em'
         td.style.fontSize = '3em'
