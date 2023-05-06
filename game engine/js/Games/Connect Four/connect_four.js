@@ -5,6 +5,7 @@ class connect_four extends gameEngine{
       state[i] = [];
       for (let j = 0; j < 7; j++) state[i][j] = '';
     }
+    state['turn'] = 'r'
     super(state);
   }
 
@@ -21,11 +22,10 @@ class connect_four extends gameEngine{
       const tr = document.createElement('div');
       for (let j = 0; j < 7; j++) {
         const td = document.createElement('button');
-        // td.className = state[i][j]
         td.style.width = td.style.height = '5em'
         td.style.borderRadius = '50%'
         td.style.margin = '0.3em'
-        td.className = 'cyan'
+        td.className = (state[i][j] !== '' ? state[i][j] : 'cyan')
         tr.appendChild(td);
       }
       tr.style.display = 'flex'
@@ -42,11 +42,11 @@ class connect_four extends gameEngine{
       return
     }
 
-    // TODO switch turns
     for (let i = 5; i >= 0; i--){
       if (state[i][input_val] === '') {
         console.log(i, input_val)
-        state[i][input_val] = 'r'
+        state[i][input_val] = state['turn']
+        state['turn'] = (state['turn'] === 'r' ? 'y' : 'r')
         return;
       }
     }

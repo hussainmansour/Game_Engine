@@ -75,14 +75,14 @@ class sudoku extends gameEngine{
       console.log("Invalid Move!")
       return
     }
-    const row = splitted[0] - '1', col = splitted[1] - '1', value = splitted[2] - '1'
-    if (isNaN(row) || isNaN(col) || row < 0 || row > 8 || col < 0 || col > 8) {
+    const row = splitted[0] - '1', col = splitted[1] - '1', value = splitted[2] - '0'
+    if (isNaN(row) || isNaN(col)) {
       console.log("Invalid Input!")
       return
     }
 
     if (this.validate_input(state, row, col, value))
-      state[row][col] = input.value
+      state[row][col] = value
     else console.log("Invalid Move")
   }
   initialize_state() {
@@ -116,6 +116,7 @@ class sudoku extends gameEngine{
     for (let j = 0; j < 9; j++) {
       if (state[row][j] === value) {
         invalid = false;
+        console.log('c', j)
       }
     }
 
@@ -123,16 +124,18 @@ class sudoku extends gameEngine{
     for (let i = 0; i < 9; i++) {
       if (state[i][col] === value) {
         invalid = false;
+        console.log('r', i)
       }
     }
 
     // Check box
-    let boxRow = Math.floor(row / 3) * 3;
-    let boxCol = Math.floor(col / 3) * 3;
+    let boxRow = Math.floor(row / 3) * 3;console.log('br', boxRow)
+    let boxCol = Math.floor(col / 3) * 3;console.log('bc', boxCol)
     for (let i = boxRow; i < boxRow + 3; i++) {
       for (let j = boxCol; j < boxCol + 3; j++) {
         if (state[i][j] === value) {
           invalid = false;
+          console.log(i, ' ', j, ' ', state[i][j])
         }
       }
     }

@@ -19,9 +19,12 @@ class gameEngine{
       });
       let input=await p;
       console.log(input);
-      if(input==null) break;
+      if(input == null) break;
       this.controller(this.state,input);
+      this.drawer(this.state)
     }
+
+
     // const input_button = document.createElement('button')
     // input_button.id = 'input';input_button.textContent = "Give Input"
     // input_button.addEventListener('click',() => {
