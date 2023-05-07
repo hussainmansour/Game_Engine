@@ -9,7 +9,6 @@ class chess extends gameEngine{
     const namePieces = ['rook', 'knight', 'bishop', 'queen', 'king', 'bishop', 'knight', 'rook'];
     const blackPieces = ['\u265C', '\u265E', '\u265D', '\u265B', '\u265A', '\u265D', '\u265E', '\u265C'];
     const whitePieces = ['\u2656', '\u2658', '\u2657', '\u2655', '\u2654', '\u2657', '\u2658', '\u2656'];
-
     for (let i = 0; i < 8; i++) {
       state[0][i] = {name: namePieces[i], color: 'white', symbol: whitePieces[i]};
       state[1][i] = {name: 'pawn', color: 'white', symbol: '\u2659'};
@@ -22,6 +21,21 @@ class chess extends gameEngine{
 
   drawer(state) {
     super.drawer(state)
+  //   draw in new window
+  //   const newWindow = window.open('', 'Chess', '')
+  //   const windowDoc = newWindow.document
+  //   windowDoc.open();
+  //   windowDoc.write(`
+  //   <html lang="en">
+  //     <head>
+  //       <title>Chess</title>
+  //       <link rel="stylesheet" type="text/css" href="style.css">
+  //     </head>
+  //     <body>
+  //     ${new Date().getDate()}
+  //     </body>
+  //   </html>
+  // `);windowDoc.close();
     const board = document.getElementById('board')
     if(board) board.remove()
 
@@ -40,6 +54,7 @@ class chess extends gameEngine{
       table.appendChild(tr);
     }
     document.body.appendChild(table);
+    // windowDoc.body.appendChild(table);
   }
 
   controller(state, input) {
