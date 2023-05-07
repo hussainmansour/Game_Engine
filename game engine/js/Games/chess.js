@@ -21,23 +21,11 @@ class chess extends gameEngine{
 
   drawer(state) {
     super.drawer(state)
-  //   draw in new window
-  //   const newWindow = window.open('', 'Chess', '')
-  //   const windowDoc = newWindow.document
-  //   windowDoc.open();
-  //   windowDoc.write(`
-  //   <html lang="en">
-  //     <head>
-  //       <title>Chess</title>
-  //       <link rel="stylesheet" type="text/css" href="style.css">
-  //     </head>
-  //     <body>
-  //     ${new Date().getDate()}
-  //     </body>
-  //   </html>
-  // `);windowDoc.close();
-    const board = document.getElementById('board')
-    if(board) board.remove()
+    while (true) {
+      const board = document.getElementById('board')
+      if (board) board.remove()
+      else break;
+    }
 
     const table = document.createElement("div");table.id = 'board'
     for (let i = 0; i < 8; i++) {
@@ -54,7 +42,6 @@ class chess extends gameEngine{
       table.appendChild(tr);
     }
     document.body.appendChild(table);
-    // windowDoc.body.appendChild(table);
   }
 
   controller(state, input) {

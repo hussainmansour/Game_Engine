@@ -12,8 +12,11 @@ class Queens extends gameEngine{
 
   drawer(state){
     super.drawer(state)
-    const board = document.getElementById('board')
-    if(board) board.remove()
+    while (true) {
+      const board = document.getElementById('board')
+      if (board) board.remove()
+      else break;
+    }
 
     const table = document.createElement("div");table.id = 'board'
     for (let i = 0; i < 8; i++) {
@@ -22,8 +25,6 @@ class Queens extends gameEngine{
       for (let j = 0; j < 8; j++) {
         const td = document.createElement('button');
         if(state[i][j]) td.textContent = '\u265B'
-
-        // td.id = tr.id + '' + j
         td.className = (i%2 === j%2 ? "white" : "grey")
         td.style.width = td.style.height = '1.3em'
         td.style.fontSize = '3em'

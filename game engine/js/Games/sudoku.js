@@ -144,8 +144,11 @@ class sudoku extends gameEngine{
 
   drawer(state) {
     super.drawer(state);
-    const board = document.getElementById('board')
-    if(board) board.remove()
+    while (true) {
+      const board = document.getElementById('board')
+      if (board) board.remove()
+      else break;
+    }
 
     const table = document.createElement("div");table.id = 'board'
     for (let i = 0; i < 9; i++) {

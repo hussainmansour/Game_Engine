@@ -19,20 +19,10 @@ class gameEngine{
       });
       let input = await p;
       console.log(input);
-      if(input == null) break;
+      if(!input) break;
       this.controller(this.state,input);
       this.drawer(this.state)
     }
-
-
-    // const input_button = document.createElement('button')
-    // input_button.id = 'input';input_button.textContent = "Give Input"
-    // input_button.addEventListener('click',() => {
-    //   const input = prompt("Enter input")
-    //   if(input) this.controller(this.state, input)
-    //   this.drawer(this.state)
-    // });
-    // document.body.appendChild(input_button)
   }
   drawer(state){}
   controller(state, input){}

@@ -11,8 +11,11 @@ class tic_tac_toe extends gameEngine{
 
   drawer(state) {
     super.drawer(state)
-    const board = document.getElementById('board')
-    if(board) board.remove()
+    while (true) {
+      const board = document.getElementById('board')
+      if (board) board.remove()
+      else break;
+    }
 
     const table = document.createElement("div");table.id = 'board'
     const turn = document.createElement('div');turn.id = 'turn'

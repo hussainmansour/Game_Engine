@@ -11,12 +11,16 @@ class connect_four extends gameEngine{
 
   drawer(state) {
     super.drawer(state)
-    const board = document.getElementById('board')
-    if(board) board.remove()
+    while (true) {
+      const board = document.getElementById('board')
+      if (board) board.remove()
+      else break;
+    }
 
     const table = document.createElement("div");table.id = 'board'
     table.className = 'blue'
     table.style.padding = '0.7em'
+    table.style.borderRadius = '20px'
 
     for (let i = 0; i < 6; i++) {
       const tr = document.createElement('div');
