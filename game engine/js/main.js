@@ -184,7 +184,7 @@ input:checked ~div.curtain__panel--right{
             </div>
         </div>
         </section>
-        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!--        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>-->
       </body>
     </html>
   `);
