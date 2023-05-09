@@ -135,12 +135,12 @@ input:checked ~div.curtain__panel--right{
 
 .curtain__panel--left {
    justify-content: flex-end;
-   padding-right: 1em;
+   padding-right: 0.3em;
    transform: translateX(-90%);
 }
 
 .curtain__panel--right {
-   padding-left: 1em;
+   padding-left: 0.3em;
    justify-content: flex-start;
    transform: translateX(90%);
 }
@@ -184,7 +184,7 @@ input:checked ~div.curtain__panel--right{
             </div>
         </div>
         </section>
-<!--        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>-->
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
       </body>
     </html>
   `);

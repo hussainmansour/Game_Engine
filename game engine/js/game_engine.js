@@ -13,13 +13,13 @@ class gameEngine{
       this.drawer(this.state);
       let p = new Promise((resolve)=>{
         setTimeout(()=>{
-          let input = prompt("Enter input or click cancel to exit");
+          let input = prompt("Enter input or write exit to end game");
           resolve(input);
         },2000)
       });
       let input = await p;
       console.log(input);
-      if(!input) break;
+      if(!input || input === 'end' || input === 'exit') break;
       this.controller(this.state,input);
       this.drawer(this.state)
     }
