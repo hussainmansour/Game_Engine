@@ -19,9 +19,24 @@ class Queens extends gameEngine{
     }
 
     const table = document.createElement("div");table.id = 'board'
+    const letters = document.createElement('div');
+    for (let j = 0; j < 9; j++) {
+      const td = document.createElement('button');
+      if(!j) td.textContent = ''
+      else td.textContent = String.fromCharCode('a'.charCodeAt(0) + j - 1)
+      td.className = 'chess_label'
+      letters.appendChild(td);
+    }
+    letters.style.display = 'flex'
+    table.appendChild(letters);
+
     for (let i = 0; i < 8; i++) {
       const tr = document.createElement('div');
-      // tr.id = i + ''
+      const numbers = document.createElement('button');
+      numbers.className = 'chess_label'
+      numbers.textContent = (i + 1) + ''
+      tr.appendChild(numbers)
+
       for (let j = 0; j < 8; j++) {
         const td = document.createElement('button');
         if(state[i][j]) td.textContent = '\u265B'

@@ -18,6 +18,7 @@ function mainMenuInit(){
   windowDoc.write(`
     <html lang="en">
       <head>
+        <link rel="shortcut icon" href="../tile.png">
         <title>Game Main Menu</title>
       </head>
       <body>
