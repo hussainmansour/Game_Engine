@@ -38,13 +38,14 @@ class Queens extends gameEngine{
 
   controller(state, input){
     super.controller(state, input)
-    const splitted = input.split(" ")
-    if(splitted.length !== 2) {
+    if(input.length !== 2) {
       console.log("Invalid Input!")
       return
     }
-    let row = splitted[0] - '1', col = splitted[1] - '1'
-    if (isNaN(row) || isNaN(col) || row < 0 || row > 7 || col < 0 || col > 7) {
+
+    const col = input[0].charAt(0).charCodeAt(0) - 'a'.charCodeAt(0)
+    const row = input[1] - '1'
+    if (isNaN(row) || isNaN(col) || row < 0 || row >= 8 || col < 0 || col >= 8) {
       console.log("Invalid Input!")
       return
     }
@@ -53,8 +54,7 @@ class Queens extends gameEngine{
     for (let i = 0; i < 8; i++)
       for (let j = 0; j < 8; j++)
         if(state[i][j])
-          if ((i === row || j === col || i - j === row - col ||
-              7 - i - j === 7 - row - col) && state[i][j])
+          if (i === row || j === col || Math.abs(i - j) === Math.abs(row - col) || i + j === row + col)
             queen = false
 
     if(queen){
