@@ -192,7 +192,7 @@ input:checked ~div.curtain__panel--right{
   for (let i = 0; i < games.length; i++) {
     const g = document.createElement('button')
     g.name = games[i]
-    g.innerHTML = '<i class="fas fa-' +gamesIcons[i]+ '"></i>' + games[i]
+    g.innerHTML = '<i class="fas fa-' + gamesIcons[i] + '"></i>' + games[i]
     g.addEventListener('click', () => {startGame(g.name)})
     menu.appendChild(g)
   }
