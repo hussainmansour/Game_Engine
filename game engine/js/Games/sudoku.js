@@ -7,19 +7,14 @@ class sudoku extends gameEngine{
       }
     }
     function generateValidSudokuBoard() {
-      const board = []
-      for (let i = 0; i < 9; i++) {
-        board[i] = [];
-        for (let j = 0; j < 9; j++)
-          board[i][j] = {val: 0, fixed: true};
-      }
+      const board = Array.from({ length: 9 }, () => new Array(9).fill(0));
       const numList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       const boxSize = 3;
 
       // generate random numbers for first row
       shuffle(numList);
       for (let i = 0; i < 9; i++) {
-        board[0][i].val = numList[i];
+        board[0][i]= numList[i];
       }
 
       // generate random numbers for remaining rows
@@ -32,12 +27,12 @@ class sudoku extends gameEngine{
           const box = [];
           for (let j = 0; j < boxSize; j++) {
             for (let k = 0; k < boxSize; k++) {
-              box.push(board[rowStart + j][colStart + k].val);
+              box.push(board[rowStart + j][colStart + k]);
             }
           }
           // get the values in the current cell's row and column
           const rowValues = board[row];
-          const colValues = board.map((r) => r[col].val);
+          const colValues = board.map((r) => r[col]);
           // get the list of valid numbers for the current cell
           const validNums = numList.filter(
             (num) => !box.includes(num) && !rowValues.includes(num) && !colValues.includes(num)
@@ -48,7 +43,7 @@ class sudoku extends gameEngine{
           }
           // randomly select a valid number and set it in the current cell
           const randIndex = Math.floor(Math.random() * validNums.length);
-          board[row][col].val= validNums[randIndex];
+          board[row][col]= validNums[randIndex];
         }
       }
 
@@ -62,16 +57,21 @@ class sudoku extends gameEngine{
         const row = Math.floor(Math.random() * 9);
         const col = Math.floor(Math.random() * 9);
         if (board[row][col] !== 0) {
-          board[row][col].val= 0;
-          board[row][col].fiexd= false;
+          board[row][col] = 0;
           cellsRemoved++;
         }
       }
 
-      console.log(numCellsToRemove);console.log(board)
       return board;
     }
-    const state = generateValidSudokuBoard()
+    const board = generateValidSudokuBoard()
+    const state = []
+    for(let i = 0;i < 9;i++){
+      state[i] = []
+      for(let j = 0;j < 9;j++)
+        state[i][j] = board[i][j] ? {val: board[i][j], fixed: true} : {val: 0, fixed: false}
+    }
+    console.log(state)
     super(state);
   }
 
@@ -89,15 +89,14 @@ class sudoku extends gameEngine{
     }
 
     if(value === -1){
-      if(state[row][col].fiexd){
+      if(state[row][col].fixed)
         console.log("Can't Delete Fixed Number")
-      }
-      else state[row][col].val = 0
+      else state[row][col] = 0
       return
     }
 
     if (this.validate_input(state, row, col, value))
-      state[row][col] = value
+      state[row][col] = {val: value, fixed: false}
     else console.log("Invalid Move")
   }
   initialize_state() {
@@ -124,7 +123,7 @@ class sudoku extends gameEngine{
     return this.state
   }
   validate_input(state, row, col, value) {
-    if(value > 9 || value < 1 || isNaN(value)) return false;
+    if(value > 9 || value < 1 || isNaN(value) || state[row][col].fixed) return false;
 
     // Check row
     let invalid = true;
@@ -184,7 +183,7 @@ class sudoku extends gameEngine{
         if (state[i][j].fixed) td.classList.add('tile-start')
         if(i===2 || i===5) td.classList.add('horizontal-line')
         if(j===2 || j===5) td.classList.add('vertical-line')
-        td.classList.add('tile')
+        td.classList.add('tile');
         td.style.width = td.style.height = '1.3em'
         td.style.fontSize = '3em'
         tr.appendChild(td);
