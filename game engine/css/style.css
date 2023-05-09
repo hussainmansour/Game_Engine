@@ -28,20 +28,36 @@ body{
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 50px 10px;
   align-content: center;
 }
 
 #menu button{
-  border: 1px solid #333;
-  background: #333;
+  border: none;
+  border-radius: 15px;
   font-size: 2em;
-  color: #FFF;
+  color: #333;
+  cursor:pointer;
   font-family: 'Chivo Mono';
+  box-shadow: 0 0.3em #2e2e2e;
+  background: #ededed;
+  box-sizing: border-box;
   text-transform: uppercase;
+  font-weight: bolder;
+  transition: all .1s ease-in-out;
   width: 30%;
   height: 5em;
-  margin: 1px;
+  margin: 10px 0;
 }
+
+#menu button:active{
+  box-shadow: 0 0.1em #2e482e;
+  margin: 20px 0 0;
+}
+
+/*#menu:has(> button:active){*/
+/*    gap: 40px 10px;*/
+/*}*/
 
 #exit, #input{
   position: absolute;
