@@ -57,10 +57,10 @@ class checkers extends gameEngine{
         td.style.fontSize = '3em'
         if(state[i][j].player !== '-'){
           if(state[i][j].player === 'r'|| state[i][j].player === 'c'){
-            td.textContent = "\u26C2";
+            td.textContent = "\u2689";
           }
           else if(state[i][j].player === 'R'|| state[i][j].player === 'C'){
-            td.textContent = "\u26C3";
+            td.textContent = "\u2689";
           }
           td.style.color = state[i][j].color
         }

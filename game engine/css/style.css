@@ -105,7 +105,7 @@ body{
 
 .r{background: #f64e4e;}
 .y{background: #f6f620;}
-.chess_label{width: 3.9em;height: 3.9em;}
+.chess_label{width: 3.9em;height: 3.9em;color: #AAA}
 .tic_label{width: 13em;height: 2em;}
 
 
