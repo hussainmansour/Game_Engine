@@ -21,7 +21,6 @@ class gameEngine{
       console.log(input);
       if(!input || input === 'end' || input === 'exit') break;
       this.controller(this.state,input);
-      this.drawer(this.state)
     }
   }
   drawer(state){}
