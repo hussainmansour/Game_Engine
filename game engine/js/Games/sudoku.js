@@ -7,14 +7,19 @@ class sudoku extends gameEngine{
       }
     }
     function generateValidSudokuBoard() {
-      const board = Array.from({ length: 9 }, () => new Array(9).fill(0));
+      const board = []
+      for (let i = 0; i < 9; i++) {
+        board[i] = [];
+        for (let j = 0; j < 9; j++)
+          board[i][j] = {val: 0, fixed: true};
+      }
       const numList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       const boxSize = 3;
 
       // generate random numbers for first row
       shuffle(numList);
       for (let i = 0; i < 9; i++) {
-        board[0][i] = numList[i];
+        board[0][i].val = numList[i];
       }
 
       // generate random numbers for remaining rows
@@ -27,12 +32,12 @@ class sudoku extends gameEngine{
           const box = [];
           for (let j = 0; j < boxSize; j++) {
             for (let k = 0; k < boxSize; k++) {
-              box.push(board[rowStart + j][colStart + k]);
+              box.push(board[rowStart + j][colStart + k].val);
             }
           }
           // get the values in the current cell's row and column
           const rowValues = board[row];
-          const colValues = board.map((r) => r[col]);
+          const colValues = board.map((r) => r[col].val);
           // get the list of valid numbers for the current cell
           const validNums = numList.filter(
             (num) => !box.includes(num) && !rowValues.includes(num) && !colValues.includes(num)
@@ -43,7 +48,7 @@ class sudoku extends gameEngine{
           }
           // randomly select a valid number and set it in the current cell
           const randIndex = Math.floor(Math.random() * validNums.length);
-          board[row][col] = validNums[randIndex];
+          board[row][col].val= validNums[randIndex];
         }
       }
 
@@ -57,11 +62,13 @@ class sudoku extends gameEngine{
         const row = Math.floor(Math.random() * 9);
         const col = Math.floor(Math.random() * 9);
         if (board[row][col] !== 0) {
-          board[row][col] = 0;
+          board[row][col].val= 0;
+          board[row][col].fiexd= false;
           cellsRemoved++;
         }
       }
 
+      console.log(numCellsToRemove);console.log(board)
       return board;
     }
     const state = generateValidSudokuBoard()
@@ -76,8 +83,16 @@ class sudoku extends gameEngine{
       return
     }
     const row = splitted[0] - '1', col = splitted[1] - '1', value = splitted[2] - '0'
-    if (isNaN(row) || isNaN(col)) {
+    if (isNaN(row) || isNaN(col) || row < 0 || row >= 9 || col < 0 || col >= 9) {
       console.log("Invalid Input!")
+      return
+    }
+
+    if(value === -1){
+      if(state[row][col].fiexd){
+        console.log("Can't Delete Fixed Number")
+      }
+      else state[row][col].val = 0
       return
     }
 
@@ -114,18 +129,14 @@ class sudoku extends gameEngine{
     // Check row
     let invalid = true;
     for (let j = 0; j < 9; j++) {
-      if (state[row][j] === value) {
+      if (state[row][j] === value)
         invalid = false;
-        console.log('c', j)
-      }
     }
 
     // Check column
     for (let i = 0; i < 9; i++) {
-      if (state[i][col] === value) {
+      if (state[i][col] === value)
         invalid = false;
-        console.log('r', i)
-      }
     }
 
     // Check box
@@ -133,10 +144,8 @@ class sudoku extends gameEngine{
     let boxCol = Math.floor(col / 3) * 3;console.log('bc', boxCol)
     for (let i = boxRow; i < boxRow + 3; i++) {
       for (let j = boxCol; j < boxCol + 3; j++) {
-        if (state[i][j] === value) {
+        if (state[i][j] === value)
           invalid = false;
-          console.log(i, ' ', j, ' ', state[i][j])
-        }
       }
     }
     return invalid;
@@ -171,14 +180,11 @@ class sudoku extends gameEngine{
 
       for (let j = 0; j < 9; j++) {
         const td = document.createElement('button');
-        td.id = i + '' + j
-        if (state[i][j] !== 0) {
-          td.textContent = (this.state)[i][j];
-          td.classList.add('tile-start');
-        }
-        if(i===2 || i===5){td.classList.add('horizontal-line');}
-        if(j===2 || j===5){td.classList.add('vertical-line');}
-        td.classList.add('tile');
+        td.textContent = state[i][j].val ? state[i][j].val : ''
+        if (state[i][j].fixed) td.classList.add('tile-start')
+        if(i===2 || i===5) td.classList.add('horizontal-line')
+        if(j===2 || j===5) td.classList.add('vertical-line')
+        td.classList.add('tile')
         td.style.width = td.style.height = '1.3em'
         td.style.fontSize = '3em'
         tr.appendChild(td);

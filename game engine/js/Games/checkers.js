@@ -88,8 +88,11 @@ class checkers extends gameEngine{
       return
     }
 
-    const rowFrom = from[0] - '1', rowTo = to[0] - '1'
-    const colFrom = from[1] - '1', colTo = to[1] - '1'
+    const colFrom = from[0].charAt(0).charCodeAt(0) - 'a'.charCodeAt(0)
+    const rowFrom = from[1] - '1'
+    const colTo = to[0].charAt(0).charCodeAt(0) - 'a'.charCodeAt(0)
+    const rowTo = to[1] - '1'
+
     // Check if the input is valid
     if (isNaN(rowFrom) || isNaN(rowTo) || isNaN(colFrom) || isNaN(colTo) ||
     rowFrom < 0 || rowFrom >= 8 || colFrom < 0 || colFrom >= 8 || rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
