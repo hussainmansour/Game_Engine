@@ -27,19 +27,29 @@ class checkers extends gameEngine{
     const table = document.createElement("div");table.id = 'board'
     const turn = document.createElement('div');turn.id = 'turn'
     turn.textContent = 'Turn: ' + (state['turn'] === 'r' ? 'Player 1' : 'Player 2')
-    turn.style.display = 'flex';turn.style.fontSize = '3em'
+    turn.style.display = 'flex';turn.style.fontSize = '2em'
     turn.style.justifyContent = 'center';turn.style.alignItems = 'center'
-    turn.style.textShadow = '#777 3px 3px 4px'
     turn.style.color = state['turn'] === 'r' ? 'red' : 'cyan';
     table.appendChild(turn);
+
+    const letters = document.createElement('div');
+    for (let j = 0; j < 9; j++) {
+      const td = document.createElement('button');
+      if(!j) td.textContent = ''
+      else td.textContent = String.fromCharCode('a'.charCodeAt(0) + j - 1)
+      td.className = 'chess_label'
+      letters.appendChild(td);
+    }
+    letters.style.display = 'flex'
+    table.appendChild(letters);
+
     for (let i = 0; i < 8; i++) {
       const tr = document.createElement('div');
-      // const index = document.createElement('div');
-      // index.textContent = i.toString();
-      // index.style.fontSize = '3em'
-      // index.style.textShadow = '#777 3px 3px 4px'
-      // index.style.marginRight = '0.5em'
-      // tr.appendChild(index);
+      const numbers = document.createElement('button');
+      numbers.className = 'chess_label'
+      numbers.textContent = (i + 1) + ''
+      tr.appendChild(numbers)
+
       for (let j = 0; j < 8; j++) {
         const td = document.createElement('button');
         td.className = (i%2 === j%2 ? "white" : "black")
@@ -71,14 +81,22 @@ class checkers extends gameEngine{
       console.log("Invalid Input!")
       return
     }
+
     const from = splitted[0], to = splitted[1]
-    const rowFrom = parseInt(from[0]), rowTo = parseInt(to[0])
-    const colFrom = parseInt(from[1]), colTo = parseInt(to[1])
+    if(from.length !== 2 || to.length !== 2 || from === to){
+      console.log("Invalid Input!")
+      return
+    }
+
+    const rowFrom = from[0] - '1', rowTo = to[0] - '1'
+    const colFrom = from[1] - '1', colTo = to[1] - '1'
     // Check if the input is valid
-    if (isNaN(rowFrom) || isNaN(rowTo) || isNaN(colFrom) || isNaN(colTo)) {
+    if (isNaN(rowFrom) || isNaN(rowTo) || isNaN(colFrom) || isNaN(colTo) ||
+    rowFrom < 0 || rowFrom >= 8 || colFrom < 0 || colFrom >= 8 || rowTo < 0 || rowTo >= 8 || colTo < 0 || colTo >= 8) {
       console.log("Invalid Input!")
       return;
     }
+
     // Check if the piece belongs to the current player
     const player = state[rowFrom][colFrom].player
     if(player.toLowerCase() !== state['turn']){

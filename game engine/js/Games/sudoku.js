@@ -151,8 +151,24 @@ class sudoku extends gameEngine{
     }
 
     const table = document.createElement("div");table.id = 'board'
+    const numbers = document.createElement('div');
+    for (let j = 0; j < 10; j++) {
+      const td = document.createElement('button');
+      if(!j) td.textContent = ''
+      else td.textContent = j + ''
+      td.className = 'chess_label'
+      numbers.appendChild(td);
+    }
+    numbers.style.display = 'flex'
+    table.appendChild(numbers);
+
     for (let i = 0; i < 9; i++) {
       const tr = document.createElement('div');
+      const numbers = document.createElement('button');
+      numbers.className = 'chess_label'
+      numbers.textContent = (i + 1) + ''
+      tr.appendChild(numbers)
+
       for (let j = 0; j < 9; j++) {
         const td = document.createElement('button');
         td.id = i + '' + j
