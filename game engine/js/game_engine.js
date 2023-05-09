@@ -2,7 +2,7 @@ class gameEngine{
   state
   constructor(state) {
     this.state = state
-    this.game()
+    this.game().then(r => console.log("Game ended"))
   }
 
   async game(){
