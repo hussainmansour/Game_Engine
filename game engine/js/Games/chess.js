@@ -4,7 +4,7 @@ class chess extends gameEngine{
     for (let i = 0; i < 8; i++) {
       state[i] = [];
       for (let j = 0; j < 8; j++)
-        state[i][j] = '';
+        state[i][j] = {name:'', color: '', symbol: ''};
     }
     const namePieces = ['rook', 'knight', 'bishop', 'queen', 'king', 'bishop', 'knight', 'rook'];
     const blackPieces = ['\u265C', '\u265E', '\u265D', '\u265B', '\u265A', '\u265D', '\u265E', '\u265C'];
