@@ -91,7 +91,7 @@ class sudoku extends gameEngine{
     if(value === -1){
       if(state[row][col].fixed)
         console.log("Can't Delete Fixed Number")
-      else state[row][col] = 0
+      else state[row][col].val = 0
       return
     }
 
@@ -128,13 +128,13 @@ class sudoku extends gameEngine{
     // Check row
     let invalid = true;
     for (let j = 0; j < 9; j++) {
-      if (state[row][j] === value)
+      if (state[row][j].val === value)
         invalid = false;
     }
 
     // Check column
     for (let i = 0; i < 9; i++) {
-      if (state[i][col] === value)
+      if (state[i][col].val === value)
         invalid = false;
     }
 
@@ -143,7 +143,7 @@ class sudoku extends gameEngine{
     let boxCol = Math.floor(col / 3) * 3;console.log('bc', boxCol)
     for (let i = boxRow; i < boxRow + 3; i++) {
       for (let j = boxCol; j < boxCol + 3; j++) {
-        if (state[i][j] === value)
+        if (state[i][j].val === value)
           invalid = false;
       }
     }
