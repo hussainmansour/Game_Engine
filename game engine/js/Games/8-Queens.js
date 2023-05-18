@@ -142,14 +142,14 @@ safe_queen(Col, [Col2|Cols], Offset) :-
   controller(state, input){
     super.controller(state, input)
     if(input.length !== 2) {
-      console.log("Invalid Input!")
+      alert("Invalid Input!")
       return
     }
 
     const col = input[0].charAt(0).charCodeAt(0) - 'a'.charCodeAt(0)
     const row = input[1] - '1'
     if (isNaN(row) || isNaN(col) || row < 0 || row >= 8 || col < 0 || col >= 8) {
-      console.log("Invalid Input!")
+      alert("Invalid Input!")
       return
     }
     if(state[row][col]){
@@ -167,7 +167,7 @@ safe_queen(Col, [Col2|Cols], Offset) :-
       state[row][col] = 1
     }
     else{
-      console.log("Invalid Move")
+      alert("Invalid Move")
     }
   }
 
