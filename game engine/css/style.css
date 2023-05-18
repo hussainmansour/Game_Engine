@@ -59,21 +59,29 @@ body{
 /*    gap: 40px 10px;*/
 /*}*/
 
-#exit, #input{
+#exit, #solve{
   position: absolute;
-  bottom: 1em;
+  right: 2em;
   font-size: 1.4em;
   font-family: 'Chivo Mono', sans-serif;
   padding:10px 20px;
-  border-radius: 40px;
+  border-radius: 15px;
   transition: .2s ease-in-out;
+
+  color: #333;
+  cursor:pointer;
+  box-shadow: 0 0.3em #2e2e2e;
+  background: #ededed;
+  font-weight: bolder;
 }
 
-#input:hover,
-#exit:hover{
-  opacity: 1;
-  background: #222;
-  color: #FFF;
+#solve{top: 1em;}
+#exit{bottom: 1em;}
+
+#exit:active,
+#solve:active{
+  box-shadow: 0 0.1em #2e482e;
+  transform: translateY(10px);
 }
 
 #exit{right: 2em}
